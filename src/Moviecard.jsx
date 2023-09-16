@@ -23,7 +23,7 @@ const Moviecard = ({key, movie, genreMap, toggleHomepage, toggleMoviePage, onMov
                     <img className="favorite-icon" alt="" src="/undefined8.png" />
                 </div>
             </div>
-            <p className="movie-card-details">USA, {movie.release_date.slice(0, 4)}</p>
+            <p className="movie-card-details" data-testid="movie-release-date">USA, {movie.release_date.slice(0, 4)}</p>
             <p className="movie-card-title" data-testid="movie-title">{movie.title}</p>
             <div className="movie-card-ratings">
                 <div className="imdb">
