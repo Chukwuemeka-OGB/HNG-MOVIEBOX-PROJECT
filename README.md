@@ -6,9 +6,9 @@ This Project was my stage Two HNG task implemented with
 
 
 ## To run this project
-
-```JavaSscript
+<pre>
+```javascript
    npm install  //To install dependencies
    npm start    // To launch it
 ```
-
+</pre>
