@@ -1,0 +1,31 @@
+footer{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    align-items: center;
+    gap: 1rem;
+    margin: 10rem 0 1rem;
+
+
+    .social{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+
+        &-icon{
+            width: 24px;
+            height: 24px;
+            object-fit: cover;
+        }
+
+    }
+    .links{
+        display: flex;
+        gap: 2rem;
+    }
+    .copyright{
+        color: $gray-500;
+        font-weight: 600;
+    }
+}
