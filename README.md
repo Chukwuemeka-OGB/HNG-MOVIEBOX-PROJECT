@@ -1,5 +1,5 @@
 # HNG MOVIEBOX PROJECT
-This Project was my stage Two HNG tak implemented with 
+This Project was my stage Two HNG task implemented with 
 - **React**
 - **TMDB API**
 - **Sass**
