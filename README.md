@@ -1,8 +1,9 @@
 # HNG MOVIEBOX PROJECT
 This Project was my stage Two HNG tak implemented with 
-* **React**
-* **TMDB API**
-* **Sass**
+- **React**
+- **TMDB API**
+- **Sass**
+
 
 ## To run this project
 
