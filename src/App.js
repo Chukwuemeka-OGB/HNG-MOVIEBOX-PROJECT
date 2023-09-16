@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import "./sass/homepage.scss";
 import Loader from "./Loader";
 import Moviecard from "./Moviecard";
+import MoviePage from "./MoviePage";
 
 
 const options = {
@@ -81,139 +82,173 @@ function App() {
       37: 'Western',
   };
 
+  const [isHomepageVisible, setIsHomepageVisible] = useState(true);
+  const [isMoviePageVisible, setIsMoviePageVisible] = useState(false);
+  const [selectedMovieId, setSelectedMovieId] = useState(null);
+
+  const toggleHomepageVisibility = () => {
+    setIsHomepageVisible(!isHomepageVisible);
+  };
+
+  const toggleMoviePageVisibility = () => {
+    setIsMoviePageVisible(!isMoviePageVisible);
+  };
+
+  const handleMovieCardClick = (id) => {
+    // accessing the movie id 
+    setSelectedMovieId(id);
+  };
 
 
 
 
   return (
     <div className="App container">
-      <section className="header" >
-        <div className="img-container">
-          <img className="poster-icon" 
-              alt= {headerMovie?.title}
-              src= {headerMovie?.poster_path == null ? "https://i1.sndcdn.com/avatars-RRIxLADLQ2fDPyrM-T1LosQ-t240x240.jpg" : `https://image.tmdb.org/t/p/w500/${headerMovie?.poster_path}`}
-           />
-        </div>
-        <div className="navbar">
-          <div className="logo">
-            <img className="logo-icon" alt="" src="/undefined2.png" />
-            <b className="sign-in">MovieBox</b>
-          </div>
-          <div className="search">
-            <input
-              placeholder="What do you want to watch?"
-              type="text"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              onInput={() => searchMovies(searchTerm)}
+      <div className= {`homepage  ${isHomepageVisible ? '' : 'toggle'} `}>
+        <section className="header" >
+          <div className="img-container">
+            <img className="poster-icon" 
+                alt= {headerMovie?.title}
+                src= {headerMovie?.poster_path == null ? "https://i1.sndcdn.com/avatars-RRIxLADLQ2fDPyrM-T1LosQ-t240x240.jpg" : `https://image.tmdb.org/t/p/w500/${headerMovie?.poster_path}`}
             />
-            <svg className="search-icon" stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M10,18c1.846,0,3.543-0.635,4.897-1.688l4.396,4.396l1.414-1.414l-4.396-4.396C17.365,13.543,18,11.846,18,10 c0-4.411-3.589-8-8-8s-8,3.589-8,8S5.589,18,10,18z M10,4c3.309,0,6,2.691,6,6s-2.691,6-6,6s-6-2.691-6-6S6.691,4,10,4z"
-              onClick={() => searchMovies(searchTerm)}
-            
-            ></path></svg>
           </div>
-          <div className="menu">
-            <b className="sign-in">Sign in</b>
-            <img className="menu-icon" alt="" src="/undefined1.png" />
-          </div>      
-        </div>
-        
-        <div className="description-box">
-          <b className="description-box-title">{headerMovie?.title}</b>
-          <div className="description-rating">
-            <div className="imdb">
-              <img
-                className="imdb-icon"
-                alt=""
-                src="/undefined3.png"
+          <div className="navbar">
+            <div className="logo">
+              <img className="logo-icon" alt="" src="/undefined2.png" />
+              <b className="sign-in">MovieBox</b>
+            </div>
+            <div className="search">
+              <input
+                placeholder="What do you want to watch?"
+                type="text"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                onInput={() => searchMovies(searchTerm)}
               />
-              <div className="imdb-rating">86.0 / 100</div>
+              <svg className="search-icon" stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M10,18c1.846,0,3.543-0.635,4.897-1.688l4.396,4.396l1.414-1.414l-4.396-4.396C17.365,13.543,18,11.846,18,10 c0-4.411-3.589-8-8-8s-8,3.589-8,8S5.589,18,10,18z M10,4c3.309,0,6,2.691,6,6s-2.691,6-6,6s-6-2.691-6-6S6.691,4,10,4z"
+                onClick={() => searchMovies(searchTerm)}
+              
+              ></path></svg>
             </div>
-            <div className="rotten-tomatoes">
-              <img
-                className="rotten-tomatoes-icon"
-                alt=""
-                src="/undefined4.png"
-              />
-              <div className="div">97%</div>
+            <div className="menu">
+              <b className="sign-in">Sign in</b>
+              <img className="menu-icon" alt="" src="/undefined1.png" />
+            </div>      
+          </div>
+          
+          <div className="description-box">
+            <b className="description-box-title">{headerMovie?.title}</b>
+            <div className="description-rating">
+              <div className="imdb">
+                <img
+                  className="imdb-icon"
+                  alt=""
+                  src="/undefined3.png"
+                />
+                <div className="imdb-rating">86.0 / 100</div>
+              </div>
+              <div className="rotten-tomatoes">
+                <img
+                  className="rotten-tomatoes-icon"
+                  alt=""
+                  src="/undefined4.png"
+                />
+                <div className="div">97%</div>
+              </div>
+            </div>
+            <div className="description-box-content">
+              {headerMovie?.overview}
+            </div>
+            <button className="button" autoFocus={true} preload="auto">
+              <img className="play-icon" alt="" src="/undefined5.png" />
+              <b className="btn-text">Watch trailer</b>
+            </button>
+          </div>
+          <div className="pagination-box">
+            <div className="pagination">
+              <b className="b">1</b>
+              <b className="b">2</b>
+              <b className="b2">3</b>
+              <b className="b">4</b>
+              <b className="b">5</b>
+            </div>
+            <div className="pagination-box-child" />
+          </div>
+        </section>
+        <section className="featured-movie">
+          <div className="featured-header">
+            <p className="featured-title">Featured Movie</p>
+            <div className="see-more">
+              <div className="see-more-text">See more</div>
+              <img className="see-more-icon" alt="" src="/undefined6.png" />
             </div>
           </div>
-          <div className="description-box-content">
-            {headerMovie?.overview}
-          </div>
-          <button className="button" autoFocus={true} preload="auto">
-            <img className="play-icon" alt="" src="/undefined5.png" />
-            <b className="btn-text">Watch trailer</b>
-          </button>
-        </div>
-        <div className="pagination-box">
-          <div className="pagination">
-            <b className="b">1</b>
-            <b className="b">2</b>
-            <b className="b2">3</b>
-            <b className="b">4</b>
-            <b className="b">5</b>
-          </div>
-          <div className="pagination-box-child" />
-        </div>
-      </section>
-      <section className="featured-movie">
-        <div className="featured-header">
-          <p className="featured-title">Featured Movie</p>
-          <div className="see-more">
-            <div className="see-more-text">See more</div>
-            <img className="see-more-icon" alt="" src="/undefined6.png" />
-          </div>
-        </div>
+          
         
-      
-        { isLoading ? (
-            <Loader /> // Render a loader component when isLoading is true
-          ) : top10Movies?.length > 0 ? (
-            <div className="movie-list">
-              {top10Movies.map((movie) => (
-                <Moviecard key={movie.id} movie={movie} genreMap={genreMap} />
-              ))}
-            </div>
-          ) : (
-            <div className="empty">
-              <h2>No movies found</h2>
-            </div>
-          )
-        }
+          { isLoading ? (
+              <Loader /> // Render a loader component when isLoading is true
+            ) : top10Movies?.length > 0 ? (
+              <div className="movie-list">
+                {top10Movies.map((movie) => (
+                  <Moviecard key={movie.id}
+                   movie={movie} 
+                   genreMap={genreMap}
+                   toggleHomepage={toggleHomepageVisibility}
+                   toggleMoviePage={toggleMoviePageVisibility}
+                   onMovieCardClick={handleMovieCardClick}
+                  />
+                ))}
+              </div>
+            ) : (
+              <div className="empty">
+                <h2>No movies found</h2>
+              </div>
+            )
+          }
 
-      </section>
+        </section>
 
-      <footer className="footer">
-        <div className="social">
-          <img
-            className="social-icon"
-            alt=""
-            src="/undefined24.png"
-          />
-          <img
-            className="social-icon"
-            alt=""
-            src="/undefined25.png"
-          />
-          <img
-            className="social-icon"
-            alt=""
-            src="/undefined26.png"
-          />
-          <img
-            className="social-icon"
-            alt=""
-            src="/undefined27.png"
-          />
-        </div>
-        <div className="links">
-          <b className="link">Conditions of Use</b>
-          <b className="link">{`Privacy & Policy`}</b>
-          <b className="link">Press Room</b>
-        </div>
-        <p className="copyright">© 2023 MovieBox by  Favour Ogbanu</p>
-      </footer>
+        <footer className="footer">
+          <div className="social">
+            <img
+              className="social-icon"
+              alt=""
+              src="/undefined24.png"
+            />
+            <img
+              className="social-icon"
+              alt=""
+              src="/undefined25.png"
+            />
+            <img
+              className="social-icon"
+              alt=""
+              src="/undefined26.png"
+            />
+            <img
+              className="social-icon"
+              alt=""
+              src="/undefined27.png"
+            />
+          </div>
+          <div className="links">
+            <b className="link">Conditions of Use</b>
+            <b className="link">{`Privacy & Policy`}</b>
+            <b className="link">Press Room</b>
+          </div>
+          <p className="copyright">© 2023 MovieBox by  Favour Ogbanu</p>
+        </footer>
+      </div>
+
+      <MoviePage 
+       moviess={movies} 
+       visible={isMoviePageVisible}
+
+       toggleHomepage={toggleHomepageVisibility}
+       toggleMoviePage={toggleMoviePageVisibility}
+       selectedMovieId={selectedMovieId}
+       setSelectedMovieId ={setSelectedMovieId}
+      />
     </div>
   );
 }
