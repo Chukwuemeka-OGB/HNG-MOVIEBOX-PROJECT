@@ -5,10 +5,24 @@
   display: block;
 }
 .moviePage {
+  margin: 1rem 0;
   display: none;
   text-align: center;
   display: flex;
   flex-direction: column;
+
+  .back-btn{
+    padding: 1rem 1.5rem;
+    background-color: $rose-700;
+    width: fit-content;
+    margin: 0 auto 1rem;
+    border-radius: 6px;
+    transition: .3s all ease;
+
+    &:hover svg{
+      scale: 1.1;
+    }
+  }
 
   & .moviePosterImg {
     margin: 0 auto;

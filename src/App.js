@@ -236,12 +236,13 @@ function App() {
             <b className="link">{`Privacy & Policy`}</b>
             <b className="link">Press Room</b>
           </div>
-          <p className="copyright">© 2023 MovieBox by  Favour Ogbanu</p>
+          <p className="copyright">© 2023 MovieBox by  TechySavant</p>
         </footer>
       </div>
 
       <MoviePage 
        moviess={movies} 
+       genreMap={genreMap}
        visible={isMoviePageVisible}
 
        toggleHomepage={toggleHomepageVisibility}
