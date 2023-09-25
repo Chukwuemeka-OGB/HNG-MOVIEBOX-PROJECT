@@ -1,5 +1,7 @@
 .moviePageMain{
   display: none;
+
+  padding: 0 2rem;
 }
 .moviePageMain.visible{
   display: block;
@@ -14,7 +16,7 @@
   .back-btn{
     padding: 1rem 1.5rem;
     background-color: $rose-700;
-    width: fit-content;
+    width: max-content;
     margin: 0 auto 1rem;
     border-radius: 6px;
     transition: .3s all ease;
@@ -24,11 +26,16 @@
     }
   }
 
-  & .moviePosterImg {
-    margin: 0 auto;
-    width: 70%;
-    height: 500px;
+ .moviePoster{
+  margin: 0 auto;
+  width: 100%;
+  height: 600px;
+
+  .moviePosterImg {
+    object-fit: cover;
+    object-position: center;
   }
+ }
 }
 
 .fontsytle {
@@ -38,11 +45,10 @@
 }
 .movieinfo {
   display: flex;
-  position: absolute;
-  left: 15.5%;
+  gap: 1rem;
+  margin-bottom: .5rem;
 
-  & .movierow1 {
-    width: 68%;
+  .movierow1 {
 
     & .title {
       color: #a1a1a1;
@@ -68,9 +74,9 @@
         @extend .fontsytle;
 
         & .rating {
-          color: #e8e8e8;
+          color: $gray-400;
           font-family: Poppins;
-          font-size: 20px;
+          font-size: 15px;
           @extend .fontsytle;
         }
       }
@@ -101,36 +107,14 @@
     }
   }
 
-  & .movierow2 {
-    position: absolute;
-    right: 0;
-    margin-right: 75px;
-    margin-top: 15px;
+  .movierow2 {
     display: flex;
     flex-direction: column;
+    gap: 10px;
 
-    & .more {
-      color: #fff;
-      text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-      font-family: Poppins;
-      font-size: 15px;
-      @extend .fontsytle;
-      border-radius: 10px;
-      background: #be123c;
-      height: 40px;
-      width: 270px;
-      padding: 8px;
-      display: flex;
-      cursor: pointer;
 
-      &:active {
-        background: rgba(190, 18, 60, 0.1);
-        color: rgba(51, 51, 51, 1);
-      }
-    }
-
-    & .more1 {
-      width: 270px;
+    .more1 {
+     
       height: 40px;
       margin-top: 5px;
       font-size: 15px;
@@ -148,184 +132,82 @@
         color: #fff;
       }
     }
-    .text {
-      padding-left: 10px;
-      padding-top: 4px;
+   
+
+    .playlist {
+      height: 200px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3px;
+      min-width: 150px;
+      max-width: 600px;
+      
+      &-img-cont{
+        width: 100%;
+        height: 100%;
+        
+        img{
+          object-fit: cover;
+          object-position: center;
+        }
+    
+      }
+    
     }
 
-    & .playlist {
-      margin-top: 4px;
-      & img {
-        width: 270px;
-        height: 25%;
-      }
-
-      & .monthbest {
-        margin-top: 10px;
+    .monthbest {
+      text-align: center;
+      border-radius: 5px;
+      position: relative;
+      background: rgba(18, 18, 18, 0.5);
+      width: 100%;
+    
+    
+      & p {
+        color: #e8e8e8;
+        text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
+        font-family: Poppins;
+        font-size: 14px;
+        @extend .fontsytle;
       }
     }
+
   }
 }
 
-.awards {
-  display: flex;
-  margin-top: 12px;
 
-  & button {
-    border-radius: 5px;
-    background: #be123c;
-    color: white;
-    width: 170px;
-    height: 30px;
-    flex-shrink: 0;
-    font-size: 13px;
-  }
 
-  & span {
-    font-size: 13px;
-    color: #333;
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    border: 1px solid #c7c7c7;
-    border-left: none !important;
-    background: rgba(255, 255, 255, 0.8);
-    padding: 5px 150px 5px 25px;
-  }
-}
-
-.monthbest {
-  text-align: center;
-  border-radius: 5px;
-  position: relative;
-  background: rgba(18, 18, 18, 0.5);
-  backdrop-filter: blur(2px);
-  width: 100%;
-  margin-top: -20px;
-
-  & p {
-    color: #e8e8e8;
-    text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
-    font-family: Poppins;
-    font-size: 14px;
-    @extend .fontsytle;
-  }
-}
 
 //RESPONSIVITY
 
 @media only screen and (max-width: 900px) {
+  .moviePageMain{  
+    padding: 0 4rem;
+  }
+
   .moviePage {
-    & .trailer {
-      margin-left: 0;
-    }
+
+    .moviePoster{
+      height: 400px;
+     }
+
   }
 
-  .movieinfo {
-    position: relative;
-    flex-direction: column-reverse;
-
-    & .movierow1 {
-      margin-bottom: 270px !important;
-    }
-
-    & .movierow2 {
-      position: absolute;
-      right: auto !important;
-
-      & .more {
-        font-size: 12px;
-        height: 35px;
-        width: 500px;
-        padding: 6px;
-
-        & .text {
-          padding-left: 7px;
-          padding-top: 2px;
-        }
-      }
-
-      & .more1 {
-        width: 500px;
-        height: 35px;
-        margin-top: 4px;
-        font-size: 12px;
-        padding: 6px;
-
-        & .text {
-          padding-left: 7px;
-          padding-top: 2px;
-        }
-      }
-
-      & .playlist {
-        margin-top: 8px;
-        width: 500px;
-        & img {
-          width: 100%;
-          height: 170px;
-        }
-
-        & .monthbest {
-          margin-top: 10px;
-        }
-      }
-    }
-  }
-
-  .nomi {
-    font-size: 10.5px !important;
-    height: 25px !important;
-    padding: 5px 80px 5px 15px !important;
-  }
 }
 
-@media only screen and (max-width: 600px) {
-  .nomi {
-    font-size: 9px !important;
-    height: 26px !important;
-    padding: 5px 15px 5px 10px !important;
-  }
+@media only screen and (max-width: 700px){
+  .movieinfo{
+    flex-direction: column;
+    row-gap: 10px;
 
-  .awards {
-    & button {
-      width: 130px;
-      height: 25px;
-    }
-  }
+    .movierow2{
+      .more1{
+        text-align: center;
+      }
 
-  .more1 {
-    width: 240px !important;
-  }
-
-  .more {
-    width: 240px !important;
-  }
-
-  .playlist {
-    margin-top: 8px;
-    width: 240px !important;
-    & img {
-      width: 100%;
-      height: 170px;
-    }
-
-    & .monthbest {
-      margin-top: 10px;
-    }
-  }
-
-  .text {
-    padding-top: 4.8px !important;
-  }
-
-  .moviePage {
-  
-    & .moviePosterImg {
-      margin: 0 auto;
-      width: 70%;
-      height: 200px;
+      .playlist{
+        height: 100%;
+      }
     }
   }
 }

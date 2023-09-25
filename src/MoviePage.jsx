@@ -15,6 +15,10 @@ const MoviePage = ({ moviess, genreMap, visible, toggleHomepage, toggleMoviePage
     toggleMoviePage(); // Toggle the moviePageMain visibility
   };
 
+
+  //For other movies section
+  const otherMovies = moviess?.filter( m => m.id !== selectedMovieId);
+  const randomIndex = Math.floor(Math.random() * 10);
  
 
   return (
@@ -39,8 +43,7 @@ const MoviePage = ({ moviess, genreMap, visible, toggleHomepage, toggleMoviePage
                 genreMap[genreID]
             )).join(', ')}</span>  &nbsp; • 
             <span className="review">
-              ⭐ <span className="rating">{movie?.vote_average}</span> | {movie?.vote_count > 1000 ? `${(movie?.vote_count / 1000).toFixed(0)}k`
-  : movie?.vote_count}
+              ⭐ <span className="rating">{movie?.vote_average}</span> | {movie?.vote_count > 1000 ? `${(movie?.vote_count / 1000).toFixed(0)}k` : movie?.vote_count}
             </span>
           </p>
           <p className="overview">
@@ -50,19 +53,27 @@ const MoviePage = ({ moviess, genreMap, visible, toggleHomepage, toggleMoviePage
 
 
         </div>
-
+       {console.log(movie?.poster_path)}
         <div className="movierow2">
           <button className="more1 ">
-            <box-icon name="list-ul"></box-icon>
             <span className="text">More watch options</span>
           </button>
 
           <div className="playlist">
-            <img src={Playlist} alt="playlist" />
+            {/* <img src={Playlist} alt="playlist" /> */}
+            <div className="playlist-img-cont">
+              <img src={`https://image.tmdb.org/t/p/w500/${otherMovies[randomIndex + 1]?.poster_path}`} alt="other-movies" />
+            </div>
+            <div className="playlist-img-cont">
+              <img src={`https://image.tmdb.org/t/p/w500/${otherMovies[randomIndex + 2]?.poster_path}`} alt="other-movies" />
+            </div>
+            <div className="playlist-img-cont">
+              <img src={`https://image.tmdb.org/t/p/w500/${otherMovies[randomIndex + 3]?.poster_path}`} alt="other-movies" />
+            </div>
           </div>
 
           <div className="monthbest">
-            <p>The Best Movies and Shows in September</p>
+            <p>The Best Movies and Shows in {new Date().toLocaleString('default', { month: 'long' })}</p>
           </div>
         </div>
       </div>
