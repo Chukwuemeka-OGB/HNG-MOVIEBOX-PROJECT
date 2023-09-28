@@ -14,12 +14,15 @@
   flex-direction: column;
 
   .back-btn{
-    padding: 1rem 1.5rem;
-    background-color: $rose-700;
     width: max-content;
     margin: 0 auto 1rem;
     border-radius: 6px;
     transition: .3s all ease;
+
+    svg{
+      width: 25px;
+      height: 25px;
+    }
 
     &:hover svg{
       scale: 1.1;
@@ -182,7 +185,7 @@
 
 @media only screen and (max-width: 900px) {
   .moviePageMain{  
-    padding: 0 4rem;
+    padding: 0 3rem;
   }
 
   .moviePage {
